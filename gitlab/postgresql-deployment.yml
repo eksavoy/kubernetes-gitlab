@@ -55,4 +55,7 @@ spec:
           timeoutSeconds: 1
       volumes:
       - name: data
-        emptyDir: {}
+        glusterfs:
+          endpoints: glusterfs-cluster
+          path: gitlab-postgresql
+          readOnly: false
