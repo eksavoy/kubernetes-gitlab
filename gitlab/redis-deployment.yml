@@ -36,7 +36,8 @@ spec:
           timeoutSeconds: 1
       volumes:
       - name: data
-        glusterfs:
-          endpoints: glusterfs-cluster
-          path: gitlab-redis
-          readOnly: false
+        source:
+          persistentVolumeClaim:
+            accessMode: ReadWriteOnce
+            claimRef:
+              name: glusterfs-cluster-gitlab-redis-claim
