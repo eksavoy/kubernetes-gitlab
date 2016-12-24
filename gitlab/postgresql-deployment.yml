@@ -32,7 +32,7 @@ spec:
           containerPort: 5432
         volumeMounts:
         - mountPath: /var/lib/postgresql
-          name: data
+          name: glusterfs-cluster-gitlab-postgresql-volume
         livenessProbe:
           exec:
             command:
@@ -54,8 +54,6 @@ spec:
           initialDelaySeconds: 5
           timeoutSeconds: 1
       volumes:
-      - name: data
-        glusterfs:
-          endpoints: glusterfs-cluster
-          path: gitlab-postgresql
-          readOnly: false
+      - name: glusterfs-cluster-gitlab-postgresql-volume
+        persistentVolumeClaim:
+          claimName: glusterfs-cluster-gitlab-postgresql-claim
