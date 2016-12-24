@@ -3,14 +3,14 @@ kind: Deployment
 metadata:
   name: gitlab-redis
   namespace: gitlab
-  role: calc
 spec:
   replicas: 1
   template:
     metadata:
       labels:
         name: gitlab-redis
-        role: calc
+  nodeSelector:
+    role: calc
     spec:
       containers:
       - name: redis

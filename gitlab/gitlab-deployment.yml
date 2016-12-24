@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: gitlab
   namespace: gitlab
-  role: web
 spec:
   replicas: 1
   template:
@@ -11,7 +10,8 @@ spec:
       labels:
         name: gitlab
         app: gitlab
-        role: web
+  nodeSelector:
+    role: web
     spec:
       containers:
       - name: gitlab
