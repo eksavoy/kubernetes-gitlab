@@ -9,8 +9,6 @@ spec:
     metadata:
       labels:
         name: gitlab-redis
-  nodeSelector:
-    role: calc
     spec:
       containers:
       - name: redis
