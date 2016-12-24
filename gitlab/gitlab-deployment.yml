@@ -10,8 +10,6 @@ spec:
       labels:
         name: gitlab
         app: gitlab
-  nodeSelector:
-    role: web
     spec:
       containers:
       - name: gitlab
