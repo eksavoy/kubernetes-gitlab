@@ -35,9 +35,9 @@ spec:
           initialDelaySeconds: 5
           timeoutSeconds: 1
       volumes:
-      - name: data
-        source:
-          persistentVolumeClaim:
-            accessMode: ReadWriteOnce
-            claimRef:
-              name: glusterfs-cluster-gitlab-redis-claim
+        - name: data
+          source:
+            persistentVolumeClaim:
+             accessMode: ReadWriteOnce
+             claimRef:
+               name: glusterfs-cluster-gitlab-redis-claim
