@@ -17,30 +17,42 @@ spec:
         imagePullPolicy: Always
         env:
         - name: TZ
-          value: Europe/Stockholm
+          value: Europe/Paris
         - name: GITLAB_TIMEZONE
-          value: Stockholm
+          value: Paris
         - name: DEBUG
           value: "false"
 
         - name: GITLAB_SECRETS_DB_KEY_BASE
-          value: P26qS5+Csz50Dkd0DLM2oN9owVBFg0PB
+          valueFrom:
+            configMapKeyRef:
+              name: gitlab-config
+              key: GITLAB_SECRETS_DB_KEY_BASE
         - name: GITLAB_SECRETS_SECRET_KEY_BASE
-          value: KVaMTKLAIElEp0s4L02c1O9JCP0Rfapb
+          valueFrom:
+            configMapKeyRef:
+              name: gitlab-config
+              key: GITLAB_SECRETS_SECRET_KEY_BASE
         - name: GITLAB_SECRETS_OTP_KEY_BASE
-          value: nXJJ358Qnci0yF9qpAsLrF2vImaoFR03
+          valueFrom:
+            configMapKeyRef:
+              name: gitlab-config
+              key: GITLAB_SECRETS_OTP_KEY_BASE
 
         - name: GITLAB_ROOT_PASSWORD
-          value: root
+          valueFrom:
+            configMapKeyRef:
+              name: gitlab-config
+              key: GITLAB_ROOT_PASSWORD
         - name: GITLAB_ROOT_EMAIL
-          value: root@example.com
+          value: gitlab@de-coster.fr
 
         - name: GITLAB_HOST
-          value: git.example.com
+          value: gitlab.de-coster.fr
         - name: GITLAB_PORT
           value: "80"
         - name: GITLAB_SSH_HOST
-          value: "ssh-git.example.com"
+          value: "ssh-gitlab.de-coster.fr"
         - name: GITLAB_SSH_PORT
           value: "1022"
 
@@ -63,7 +75,10 @@ spec:
         - name: DB_USER
           value: gitlab
         - name: DB_PASS
-          value: +BP52QIxpT/flVCMpL3KXA==
+          valueFrom:
+            configMapKeyRef:
+              name: gitlab-config
+              key: DB_PASS
         - name: DB_NAME
           value: gitlab_production
 
