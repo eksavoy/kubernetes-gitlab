@@ -9,8 +9,7 @@ metadata:
 spec:
   selector:
     name: gitlab-redis
-    matchLabels:
-      role: calc
+    role: calc
   ports:
     - name: redis
       port: 6379
