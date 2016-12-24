@@ -19,7 +19,7 @@ spec:
           containerPort: 6379
         volumeMounts:
         - mountPath: /var/lib/redis
-          name: data
+          name: glusterfs-cluster-gitlab-redis-volume
         livenessProbe:
           exec:
             command:
@@ -35,9 +35,6 @@ spec:
           initialDelaySeconds: 5
           timeoutSeconds: 1
       volumes:
-        - name: data
-          source:
-            persistentVolumeClaim:
-             accessMode: ReadWriteOnce
-             claimRef:
-               name: glusterfs-cluster-gitlab-redis-claim
+        - name: glusterfs-cluster-gitlab-redis-volume
+          persistentVolumeClaim:
+            claimName: glusterfs-cluster-gitlab-redis-claim
