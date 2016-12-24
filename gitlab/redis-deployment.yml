@@ -36,4 +36,7 @@ spec:
           timeoutSeconds: 1
       volumes:
       - name: data
-        emptyDir: {}
+        glusterfs:
+          endpoints: glusterfs-cluster
+          path: gitlab-redis
+          readOnly: false
