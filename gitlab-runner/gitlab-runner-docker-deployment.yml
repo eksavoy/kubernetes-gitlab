@@ -34,4 +34,3 @@ spec:
       - name: config
         configMap:
           name: gitlab-runner-docker
-
