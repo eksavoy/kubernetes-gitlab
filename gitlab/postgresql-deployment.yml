@@ -9,6 +9,7 @@ spec:
     metadata:
       labels:
         name: gitlab-postgresql
+        role: data
     spec:
       containers:
       - name: postgresql

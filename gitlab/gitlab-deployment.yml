@@ -10,6 +10,7 @@ spec:
       labels:
         name: gitlab
         app: gitlab
+        role: web
     spec:
       containers:
       - name: gitlab

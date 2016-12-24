@@ -5,6 +5,7 @@ metadata:
   namespace: gitlab
   labels:
     name: gitlab-redis
+    role: calc
 spec:
   selector:
     name: gitlab-redis

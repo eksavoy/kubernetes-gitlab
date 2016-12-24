@@ -5,6 +5,7 @@ metadata:
   namespace: gitlab
   labels:
     name: gitlab
+    role: web
 spec:
   type: LoadBalancer
   selector:

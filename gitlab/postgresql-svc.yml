@@ -5,6 +5,7 @@ metadata:
   namespace: gitlab
   labels:
     name: gitlab-postgresql
+    role: data
 spec:
   ports:
     - name: postgres
