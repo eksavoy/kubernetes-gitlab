@@ -3,12 +3,15 @@ kind: Deployment
 metadata:
   name: gitlab-postgresql
   namespace: gitlab
+  labels:
+    role: data
 spec:
   replicas: 1
   template:
     metadata:
       labels:
         name: gitlab-postgresql
+        role: data
     spec:
       containers:
       - name: postgresql

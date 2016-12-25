@@ -13,3 +13,4 @@ spec:
       targetPort: postgres
   selector:
     name: gitlab-postgresql
+    role: data
