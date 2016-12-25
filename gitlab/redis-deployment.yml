@@ -11,6 +11,7 @@ spec:
     metadata:
       labels:
         name: gitlab-redis
+        role: calc
     spec:
       containers:
       - name: redis
