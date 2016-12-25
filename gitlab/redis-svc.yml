@@ -5,11 +5,7 @@ metadata:
   namespace: gitlab
   labels:
     name: gitlab-redis
-    role: calc
 spec:
-  selector:
-    name: gitlab-redis
-    role: calc
   ports:
     - name: redis
       port: 6379
