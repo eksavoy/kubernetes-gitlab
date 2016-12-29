@@ -3,13 +3,17 @@ kind: Deployment
 metadata:
   name: gitlab
   namespace: gitlab
+  labels:
+    role: web
 spec:
+  selector:
+    matchLabels:
+      role: web
   replicas: 1
   template:
     metadata:
       labels:
-        name: gitlab
-        app: gitlab
+        role: web
     spec:
       containers:
       - name: gitlab
@@ -24,26 +28,14 @@ spec:
           value: "false"
 
         - name: GITLAB_SECRETS_DB_KEY_BASE
-          valueFrom:
-            configMapKeyRef:
-              name: gitlab-config
-              key: GITLAB_SECRETS_DB_KEY_BASE
+          value: 8Xt!9Pw23Lg#Qftsn8!yfy!yobXpww
         - name: GITLAB_SECRETS_SECRET_KEY_BASE
-          valueFrom:
-            configMapKeyRef:
-              name: gitlab-config
-              key: GITLAB_SECRETS_SECRET_KEY_BASE
+          value: ntg8F9WRRWVCyKKPenPmiomUy2f%w
         - name: GITLAB_SECRETS_OTP_KEY_BASE
-          valueFrom:
-            configMapKeyRef:
-              name: gitlab-config
-              key: GITLAB_SECRETS_OTP_KEY_BASE
+          value: b@1@Xj786Y$mQ$vDZvyjgiJq$gge
 
         - name: GITLAB_ROOT_PASSWORD
-          valueFrom:
-            configMapKeyRef:
-              name: gitlab-config
-              key: GITLAB_ROOT_PASSWORD
+          value: S$vgnXET9%C33D
         - name: GITLAB_ROOT_EMAIL
           value: gitlab@de-coster.fr
 
@@ -75,10 +67,7 @@ spec:
         - name: DB_USER
           value: gitlab
         - name: DB_PASS
-          valueFrom:
-            configMapKeyRef:
-              name: gitlab-config
-              key: DB_PASS
+          value: r@5@ZSXvX!zEoPjb
         - name: DB_NAME
           value: gitlab_production
 
@@ -125,7 +114,7 @@ spec:
           containerPort: 22
         volumeMounts:
         - mountPath: /home/git/data
-          name: data
+          name: glusterfs-cluster-gitlab-git-volume
         livenessProbe:
           httpGet:
             path: /users/sign_in
@@ -139,5 +128,6 @@ spec:
           initialDelaySeconds: 15
           timeoutSeconds: 1
       volumes:
-      - name: data
-        emptyDir: {}
+      - name: glusterfs-cluster-gitlab-git-volume
+        persistentVolumeClaim:
+          claimName: glusterfs-cluster-gitlab-git-claim

@@ -6,11 +6,13 @@ metadata:
   labels:
     role: calc
 spec:
+  selector:
+    matchLabels:
+      role: calc
   replicas: 1
   template:
     metadata:
       labels:
-        name: gitlab-redis
         role: calc
     spec:
       containers:
